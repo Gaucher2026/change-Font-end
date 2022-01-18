@@ -29,7 +29,7 @@ class Versement extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showDialog(context: context, child: DialogVersement());
+          showDialog(context: context, builder: (_) => DialogVersement());
         },
         tooltip: "Ajouter versement",
         child: Icon(Icons.add),

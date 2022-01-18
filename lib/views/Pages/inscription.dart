@@ -53,7 +53,7 @@ class _InscriptionState extends State<Inscription> {
             width: 400,
             padding: EdgeInsets.all(30),
             child: Form(
-              autovalidate: true,
+              autovalidate: false,
               key: _fromKeys,
               child: Column(
                 children: [

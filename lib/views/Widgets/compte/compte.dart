@@ -36,9 +36,8 @@ class _CompteState extends State<Compte> {
         onPressed: () {
           showDialog(
               context: context,
-              child: DialogAddCompte(
-                contexts: context,
-              ));
+              builder: (context) => DialogAddCompte(contexts: context,)
+          );
         },
         tooltip: "Ajouter un compte",
         child: Icon(Icons.add),
@@ -173,7 +172,7 @@ class _DialogAddCompteState extends State<DialogAddCompte> {
                   onTap: () {
                     showDialog(
                         context: context,
-                        child: AlertDialog(
+                        builder: (_) => AlertDialog(
                           title: Text("Confirmation"),
                           content:
                               Text("Voulez-vous vraiment ajouter ce compte?".toUpperCase()),

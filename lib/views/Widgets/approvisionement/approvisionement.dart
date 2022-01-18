@@ -28,7 +28,10 @@ class Approvisionement extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showDialog(context: context, child: DialogApprovisionement());
+          showDialog(
+              context: context,
+              builder: (context) => DialogApprovisionement()
+          );
         },
         tooltip: "Ajouter versement",
         child: Icon(Icons.add),
@@ -146,13 +149,13 @@ class _DialogApprovisionementState extends State<DialogApprovisionement> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text("Confirmation"),
-            content:
-                Text("Vous avez besoin de effetuer cette approvisionement?".toUpperCase()),
+            content: Text("Vous avez besoin de effetuer cette approvisionement?"
+                .toUpperCase()),
             actions: [
               //si l'operation de est effectuer
               FlatButton(
                   onPressed: () {
-                    futureApprovModels=
+                    futureApprovModels =
                         createApprov(codeCompte, _controllermontant.text);
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) => Index()));

@@ -38,7 +38,9 @@ class _DeviseState extends State<Devise> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showDialog(context: context, child: DialogDevise());
+          showDialog(
+            context: context, 
+            builder: (_) => DialogDevise());
         },
         tooltip: "Ajouter Devise",
         child: Icon(Icons.add),

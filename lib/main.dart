@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white60,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/index',
+      initialRoute: '/inscription',
       routes: <String, WidgetBuilder>{
         '/connexion': (context) => Login(),
         '/inscription': (context) => Inscription(),

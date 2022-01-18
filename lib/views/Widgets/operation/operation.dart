@@ -34,7 +34,7 @@ class _OperationState extends State<Operation> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showDialog(context: context, child: DialogAddOperationState());
+          showDialog(context: context, builder: (_) => DialogAddOperationState());
         },
         tooltip: "Effectuez l'operation d'echange",
         child: Icon(Icons.add),

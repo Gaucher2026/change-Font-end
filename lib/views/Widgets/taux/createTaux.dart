@@ -29,7 +29,7 @@ class _TauxStateCreate extends State<TauxCreate> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showDialog(context: context, child: DialogTaux());
+          showDialog(context: context, builder:(_) => DialogTaux());
         },
         tooltip: "Ajouter Devise",
         child: Icon(Icons.add),
