@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:echange/views/Pages/index.dart';
+import 'package:echange/ExoFlutter/accueil.dart';
 import 'package:http/http.dart' as http;
 
 class Inscription extends StatefulWidget {
   @override
   _InscriptionState createState() => _InscriptionState();
+}
+
+class MesDonnees {
+  String Nom;
+  String Prenom;
+  String Pseudo;
+  String Matricule;
+  String Password;
+  MesDonnees(
+    {this.Nom, this.Prenom, this.Pseudo, this.Matricule, this.Password});
 }
 
 class _InscriptionState extends State<Inscription> {
@@ -14,6 +25,12 @@ class _InscriptionState extends State<Inscription> {
   String _controllerPseudo = "";
   String _controllerMatricule = "";
   String _controllerPassword = "";
+  final data = MesDonnees(
+      Nom: 'Diane',
+      Prenom: 'Cheick',
+      Pseudo: 'Gaucher@2026',
+      Matricule: '19INP00327',
+      Password: '12345678');
 
   @override
   Widget build(BuildContext context) {
@@ -184,12 +201,18 @@ class _InscriptionState extends State<Inscription> {
                   GestureDetector(
                     onTap: () {
                       _fromKeys.currentState.validate()
-                          ? signInscription(
-                              _controllerMatricule,
-                              _controllerPassword,
-                              _controllerNom,
-                              _controllerPrenom,
-                              _controllerPseudo)
+                          ? signInscription(MesDonnees(
+                              Nom: _controllerNom,
+                              Prenom: _controllerPrenom,
+                              Pseudo: _controllerPseudo,
+                              Matricule: _controllerMatricule,
+                              Password: _controllerPassword))
+                          // ,
+                          //     _controllerMatricule,
+                          //     _controllerPassword,
+                          //     _controllerNom,
+                          //     _controllerPrenom,
+                          //     _controllerPseudo)
                           : Text("");
                     },
                     child: Container(
@@ -211,38 +234,41 @@ class _InscriptionState extends State<Inscription> {
     ));
   }
 
-  signInscription(String matricule, String password, String nom, String prenom,
-      String pseudo) async {
-    Map data = {
-      'nom': nom,
-      'prenom': prenom,
-      'matricule': matricule,
-      'pseudo': pseudo,
-      'password': password
-    };
+  signInscription(MesDonnees donnee) async {
+    final data = donnee;
     print(data);
+
+    setState(() {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return Accueil(
+          donnee: data,
+        );
+      }));
+    });
+
     //Stockage
     //SharedPreferences sharedPreferences = await SharedPreferences.getInstances();
-    var response = await http.post(
-        "http://localhost:3000/api/v1/change/user/inscription",
-        body: data);
-    if (response.statusCode == 200) {
-      setState(() {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (BuildContext context) {
-          return Index(myToken:response.body);
-        }));
-      });
-    } else {
-      setState(() {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Verifies vos donnees s'il vous plâit"),
-              );
-            });
-      });
-    }
+    // var response = await http.post(
+    //     "http://localhost:3000/api/v1/change/user/inscription",
+    //     body: data);
+    // if (response.statusCode == 200) {
+    //   setState(() {
+    //     Navigator.push(context,
+    //         MaterialPageRoute(builder: (BuildContext context) {
+    //       return Index(myToken:response.body);
+    //     }));
+    //   });
+    // } else {
+    //   setState(() {
+    //     showDialog(
+    //         context: context,
+    //         builder: (BuildContext context) {
+    //           return AlertDialog(
+    //             title: Text("Verifies vos donnees s'il vous plâit"),
+    //           );
+    //         });
+    //   });
+    // }
   }
 }
