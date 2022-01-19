@@ -33,16 +33,15 @@ class _Accueil extends State<Accueil> {
     return Scaffold(
       body: Center(
         child: Container(
-          child: Column(
-            children: [
-              Text('Nom : ${donnee.Nom}'),
-              Text('Prenom : ${donnee.Prenom}'),
-              Text('Pseudo : ${donnee.Pseudo}'),
-              Text('Matricule : ${donnee.Matricule}'),
-            ],
-          )
-          ),
-        ),
+            child: Column(
+          children: [
+            Text('Nom : ${donnee.Nom}'),
+            Text('Prenom : ${donnee.Prenom}'),
+            Text('Pseudo : ${donnee.Pseudo}'),
+            Text('Matricule : ${donnee.Matricule}'),
+          ],
+        )),
+      ),
     );
   }
 }
